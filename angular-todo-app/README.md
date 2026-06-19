@@ -29,4 +29,4 @@ Projeyi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyeb
 5. Tarayıcınızda `http://localhost:4200/` adresine gidin.
 
 ## 🌐 Canlı Önizleme
-Projenin çalışan canlı haline bu bağlantıdan ulaşabilirsiniz: **[Netlify Linki Buraya Gelecek]**
+Projenin çalışan canlı haline bu bağlantıdan ulaşabilirsiniz: **https://todoapp-abravaciufuk.netlify.app/**
