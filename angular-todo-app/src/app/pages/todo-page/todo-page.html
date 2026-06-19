@@ -1,0 +1,62 @@
+<div class="container py-5">
+  <div class="todo-wrapper">
+    <div class="todo-card">
+      <h2 class="text-center mb-4 fw-bold text-primary">
+        ✨ Yapılacaklar Listem
+      </h2>
+      
+      <!-- Ekleme -->
+      <div class="input-group mb-5 shadow-sm rounded-pill overflow-hidden">
+        <input type="text" class="form-control form-control-lg border-0 px-4 bg-light" 
+               [(ngModel)]="newTask" 
+               (keyup.enter)="addTodo()" 
+               placeholder="Bugün ne yapacaksın?">
+        <button class="btn btn-primary px-4 fw-semibold" (click)="addTodo()">Ekle</button>
+      </div>
+
+      <!-- Listeleme -->
+      <ul class="list-group list-group-flush">
+        
+        @for (todo of todos; track todo.id) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            
+            @if (editId !== todo.id) {
+              <!-- Okuma -->
+              <div class="d-flex align-items-center gap-3 w-75">
+                <input type="checkbox" class="form-check-input custom-checkbox m-0" 
+                       [checked]="todo.isCompleted" 
+                       (change)="toggleComplete(todo)">
+                <span class="task-text text-truncate" [class.completed-task]="todo.isCompleted">
+                  {{ todo.task }}
+                </span>
+              </div>
+
+              <!-- Butonlar -->
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" (click)="startEdit(todo)">Düzenle</button>
+                <button class="btn btn-sm btn-outline-danger rounded-pill px-3" (click)="deleteTodo(todo.id)">Sil</button>
+              </div>
+            } @else {
+              <!-- Edit -->
+              <div class="d-flex w-100 gap-2">
+                <input type="text" class="form-control form-control-sm rounded-pill px-3" 
+                       [(ngModel)]="editTask" 
+                       (keyup.enter)="saveEdit(todo)">
+                <button class="btn btn-sm btn-success rounded-pill px-3 shadow-sm" (click)="saveEdit(todo)">Kaydet</button>
+              </div>
+            }
+
+          </li>
+        } @empty {
+          <!-- Liste boşsa -->
+          <div class="text-center text-muted py-5">
+            <p class="fs-1 mb-2">🎉</p>
+            <p class="fs-5 fw-medium mb-1">Harika iş çıkardın!</p>
+            <small>Yapılacak hiçbir görev kalmadı.</small>
+          </div>
+        }
+
+      </ul>
+    </div>
+  </div>
+</div>

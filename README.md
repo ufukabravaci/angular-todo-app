@@ -1,2 +1,0 @@
-# angular-todo-app
-
